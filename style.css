@@ -83,14 +83,14 @@ header {
 
 .notes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
 }
 
 .note-card {
   background: var(--surface-color);
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: 1rem;
   border: 1px solid var(--surface-color);
   transition: all 0.2s ease;
   position: relative;
@@ -102,9 +102,9 @@ header {
 }
 
 .note-title {
-  font-size: 1.25rem;
+  font-size: 1.20rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.50rem;
   color: var(--text-color);
   word-wrap: break-word;
 }
@@ -293,4 +293,206 @@ dialog::backdrop {
   max-width: 300px;
   width: 100%;
 }
+
+/* .yt-card img:hover {
+  opacity: 0.1;
+} */
+.preview{
+  position: relative; /* Essential for positioning the tooltip text relative to the container */
+  display: inline-block;
+  cursor: help; 
+
+}
+.preview .watchtext{
+  visibility: hidden; /* Hide the text by default */
+  width: 200px;
+  background-color: rgb(255, 0, 0);
+  color: #ffffff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 5px 0;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 35%; /* Position above the text */
+  left: 35%;
+  margin-left: -60px; /* Center the tooltip (half of width) */
+  opacity: 0;
+  transition: opacity 0.3s; /* Smooth fade-in effect */
+}
+
+.preview:hover .watchtext {
+  visibility: visible; /* Show the text on hover */
+  opacity: 1;
+}
+.heading{
+  --c: #fff;
+ /* text color */
+  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
+    #004dff;
+ /* background color */
+  color: #0000;
+  border: none;
+  transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+  text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+    calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+  outline-offset: .1em;
+  transition: 0.3s;
+
+}
+.heading:hover{
+   --_p: 0%;
+  --_i: 1;
+}
+.heading{
+  font-family: system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 0;
+  cursor: pointer;
+  padding: .1em .3em;
+}
+
+/* =========================
+   MOBILE RESPONSIVE STYLES
+   ========================= */
+@media (max-width: 768px) {
+
+  body {
+    margin: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  /* Header */
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .add-note-btn,
+  .theme-toggle-btn {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+  }
+
+  .theme-toggle-btn {
+    margin-left: 0;
+  }
+
+  /* Notes grid */
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .note-card {
+    padding: 0.9rem;
+  }
+
+  .note-title {
+    font-size: 1.05rem;
+  }
+
+  .note-content {
+    font-size: 0.95rem;
+  }
+
+  /* Always show actions on mobile (no hover) */
+  .note-actions {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Dialog */
+  dialog {
+    width: 95vw;
+    border-radius: 0.75rem;
+  }
+
+  .dialog-content {
+    padding: 1.25rem;
+  }
+
+  .dialog-title {
+    font-size: 1.25rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 0.95rem;
+  }
+
+  .dialog-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .save-btn {
+    width: 100%;
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+
+  .empty-state h2 {
+    font-size: 1.25rem;
+  }
+
+  /* YouTube card */
+  .yt-card img {
+    max-width: 100%;
+  }
+
+  /* Tooltip fix for mobile */
+  .preview .watchtext {
+    width: 160px;
+    left: 50%;
+    margin-left: -80px;
+    bottom: 110%;
+    font-size: 0.8rem;
+  }
+
+  /* Heading animation simplified for performance */
+  .heading {
+    font-size: 1.5rem;
+    transform: none;
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .heading {
+    font-size: 1rem;          /* smaller text */
+    padding: 0.3em 0.6em;      /* better touch spacing */
+    text-align: center;
+    transform: none;           /* remove 3D rotate */
+    text-shadow: none;         /* improve clarity */
+    background-size: 200%;     /* smoother gradient */
+    cursor: default;           /* mobile has no hover */
+  }
+
+  /* Simulate hover effect on tap-friendly devices */
+  .heading:active {
+    --_p: 0%;
+  }
+}
+
 

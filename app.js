@@ -1,12 +1,27 @@
 let notes = []
 let editingNoteId = null
 
+function addDate(){
+  const today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1; // January is 0, so add 1
+  const yyyy = today.getFullYear();
+
+  // Add leading zeros if day or month is less than 10
+  if (dd < 10) dd = '0' + dd;
+  if (mm < 10) mm = '0' + mm;
+
+  const customFormattedDate = `${dd}-${mm}-${yyyy}`;
+  return customFormattedDate;
+
+}
 function loadNotes() {
   const savedNotes = localStorage.getItem('quickNotes')
   return savedNotes ? JSON.parse(savedNotes) : []
 }
 function saveNote(event) {
-  event.preventDefault()
+  event.preventDefault();
+  const formattedDate = addDate();
 
   const thumbnailUrl = getVideoThumnailUrl()
 
@@ -31,11 +46,11 @@ function saveNote(event) {
       title: title,
       content: content,
       thumbnailUrl:thumbnailUrl,
-      youtubeUrl:youtubeUrl
+      youtubeUrl:youtubeUrl,
+      date:formattedDate
     })
   }
-
-  console.log(notes)
+  
   closeNoteDialog()
   saveNotes()
   renderNotes()
@@ -86,7 +101,6 @@ function deleteNote(noteId) {
   saveNotes()
   renderNotes()
 }
-
 function renderNotes() {
 
   // const thumbnailUrl = getVideoThumnailUrl()
@@ -109,12 +123,15 @@ function renderNotes() {
     <div class="note-card">
       <h3 class="note-title">${note.title}</h3>
       <p class="note-content">${note.content}</p>
-      <div id="preview">
-      <div class="yt-card">
-        <a href="${note.youtubeUrl}" target="_blank">
-        <img src="${note.thumbnailUrl}" alt="YouTube Thumbnail id="thumbnail">
-      </a>
-      </div></div>
+      <div id="preview" class="preview">
+        <div class="yt-card">
+          <a href="${note.youtubeUrl}" target="_blank">
+            <img src="${note.thumbnailUrl}" alt="YouTube Thumbnail id="thumbnail">
+            <div class="watchtext">Watch on YouTube</div>
+          </a>
+        </div>
+      </div>
+      <p>${note.date}</p>
 
       <div class="note-actions">
         <button class="edit-btn" onclick="openNoteDialog('${note.id}')" title="Edit Note">
@@ -191,3 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 })
+
+
+
