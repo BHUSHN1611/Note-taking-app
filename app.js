@@ -12,6 +12,7 @@ function saveNote(event) {
 
   const title = document.getElementById('noteTitle').value.trim();
   const content = document.getElementById('noteContent').value.trim();
+  const youtubeUrl = document.getElementById('noteReference').value.trim()
 
   if(editingNoteId) {
     // Update existing Note
@@ -29,9 +30,12 @@ function saveNote(event) {
       id: generateId(),
       title: title,
       content: content,
-      thumbnailUrl:thumbnailUrl
+      thumbnailUrl:thumbnailUrl,
+      youtubeUrl:youtubeUrl
     })
   }
+
+  console.log(notes)
   closeNoteDialog()
   saveNotes()
   renderNotes()
@@ -107,7 +111,9 @@ function renderNotes() {
       <p class="note-content">${note.content}</p>
       <div id="preview">
       <div class="yt-card">
-        <img src="${note.thumbnailUrl}" alt="YouTube Thumbnail id="thumbnail" />
+        <a href="${note.youtubeUrl}" target="_blank">
+        <img src="${note.thumbnailUrl}" alt="YouTube Thumbnail id="thumbnail">
+      </a>
       </div></div>
 
       <div class="note-actions">
