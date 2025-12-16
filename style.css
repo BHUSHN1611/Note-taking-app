@@ -7,7 +7,7 @@
 }
 
 :root {
-  --brand-color: #8b90ff;
+  --brand-color: #3f79ff;
   --base-color: #f2f4f8;
   --surface-color: #fff;
   --text-color: #191b23;
@@ -17,7 +17,7 @@
 }
 
 .dark-theme {
-  --brand-color: #8b90ff;
+  --brand-color: #3f79ff;
   --base-color: #1e1f26;
   --surface-color: #2c2f38;
   --text-color: #f0f0f0;
@@ -60,7 +60,7 @@ header {
 }
 
 .add-note-btn:hover {
-  background: #7a7fff;
+  background: #004dff;
 }
 
 .theme-toggle-btn {
@@ -266,7 +266,7 @@ dialog::backdrop {
 }
 
 .save-btn:hover {
-  background: #7a7fff;
+  background: #004dff;
 }
 
 .empty-state {
@@ -330,26 +330,16 @@ dialog::backdrop {
   opacity: 1;
 }
 .heading{
-  --c: #fff;
- /* text color */
-  background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
-    #004dff;
- /* background color */
-  color: #0000;
+  background-color: #004dff;
+  color: #ffffff;
   border: none;
-  transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
   text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
     calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
   outline-offset: .1em;
-  transition: 0.3s;
+  border-radius: 8px;
+}
 
-}
-.heading:hover{
-   --_p: 0%;
-  --_i: 1;
-}
 .heading{
-  font-family: system-ui, sans-serif;
   font-weight: bold;
   font-size: 2rem;
   margin: 0;
@@ -470,11 +460,11 @@ dialog::backdrop {
   }
 
   /* Heading animation simplified for performance */
-  .heading {
+  /* .heading {
     font-size: 1.5rem;
     transform: none;
     text-shadow: none;
-  }
+  } */
 }
 
 @media (max-width: 768px) {
